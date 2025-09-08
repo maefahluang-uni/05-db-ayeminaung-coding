@@ -26,7 +26,7 @@ public class UserController {
     public ResponseEntity<String> registerUser(@RequestBody User user) {
 
         if(repo.findByUsername(user.getUsername()) != null) {
-            return new ResponseEntity<>("Username already exists", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Username already exists", HttpStatus.BAD_REQUEST);
         }
        
         repo.save(user);
@@ -45,7 +45,7 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         
         if(repo.existsById(id) == false) {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
        
         repo.deleteById(id);
