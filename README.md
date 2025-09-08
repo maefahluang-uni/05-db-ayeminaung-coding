@@ -15,7 +15,7 @@ In UserRepository, declare the following methods that help to find all user and 
 - `data.sql` contains insert statements for dummy users. Find where this file is and explain what it is used for? 
 
 ```
-Your answer
+    data.sql is a script contains SQL statements. This file is automatically detected and executed by Spring's data initialization feature. 
 ```
 
 ## User Reservice - Complete the code
