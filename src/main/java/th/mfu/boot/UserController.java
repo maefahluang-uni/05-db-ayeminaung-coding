@@ -26,7 +26,7 @@ public class UserController {
     public ResponseEntity<String> registerUser(@RequestBody User user) {
 
         if(repo.findByUsername(user.getUsername()) != null) {
-            return new ResponseEntity<String>("Username already exists", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Username already exists", HttpStatus.CONFLICT);
         }
        
         repo.save(user);
@@ -38,6 +38,9 @@ public class UserController {
     public ResponseEntity<List<User>> list() {
         
         List<User> users = repo.findAll();
+        if(users.isEmpty()) {
+            return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
